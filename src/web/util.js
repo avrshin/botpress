@@ -1,3 +1,5 @@
+import _ from 'lodash'
+
 export const hashCode = str => {
   let hash = 0
   if (str.length === 0) {
@@ -10,4 +12,15 @@ export const hashCode = str => {
     hash |= 0
   }
   return hash
+}
+
+export const parseQueryString = queryString => {
+  const params = {}
+  const queries = queryString.split('&')
+
+  for (let i = 0, l = queries.length; i < l; i++) {
+    const temp = queries[i].split('=')
+    params[temp[0]] = decodeURIComponent(temp[1])
+  }
+  return params
 }
